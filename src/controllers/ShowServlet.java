@@ -42,6 +42,10 @@ public class ShowServlet extends HttpServlet {
 
         //メッセージデータをリクエストスコープにセットしてshow.jspを呼び出す
         request.setAttribute("task", t);
+        request.setAttribute("_token", request.getSession().getId());
+
+        //メッセージIDをセッションスコープに登録
+        request.getSession().setAttribute("task_id", t.getId());
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/show.jsp");
         rd.forward(request, response);
